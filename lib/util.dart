@@ -3,14 +3,6 @@ import 'package:flutter/widgets.dart';
 
 class Util {
 
-configuraFundo(imagem) {
-  return BoxDecoration(
-          image: DecorationImage(image: AssetImage('assets/imgs/${imagem}'),
-          fit: BoxFit.cover,
-          )
-        );
-  }
-
   criaTexto(conteudo,tamanho,cor) {
     return Text(
       conteudo,
@@ -26,12 +18,38 @@ configuraFundo(imagem) {
    return TextButton(
     style: TextButton.styleFrom(
       backgroundColor: corFundoBtn,
-      fixedSize: Size(100, 100),
+      fixedSize: const Size(100, 100),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
     ),
       onPressed: acao,
       child: criaTexto(conteudoTxt, tamanhoTxt, corTxt),
     );
+  }
+
+  criaAppBar() {
+    return AppBar(
+      backgroundColor: Colors.blue,
+      title: criaTexto('Calculadora IMC', 30.0, Colors.white),
+      centerTitle: true,
+      actions: [
+        Row(
+          children: <Widget> [
+            criaIconButton(Icons.refresh, null, Colors.white)
+          ],
+        )
+      ],
+    );
+  }
+
+  criaIconButton(icon, acao, corIcon) {
+    return Row(
+          children: <Widget> [
+            IconButton(
+              onPressed: acao,
+              icon: Icon(icon, color: corIcon),
+              )
+          ],
+        );
   }
 
 }
